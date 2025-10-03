@@ -1,37 +1,44 @@
-## Tourisme en train — Saison 4 (Fondation SNCF x Open Data University)
+## Tourisme en train — Saison 4
 
-**Problématique**
+### Problématique
 - Comment faciliter et encourager le tourisme en train en France ?
 
-**Contexte**
-- Le tourisme a émis ~97 MtCO₂ en 2022 en France; le transport = ~69% de l’empreinte.
-- Le train émet ~10× moins de CO₂ qu’une voiture sur 500 km.
-- Enjeu: rendre les destinations accessibles en train plus visibles et attractives (gares, POI, mobilités locales).
+### Notre Objectif
+Nous bâtissons [a décider] pour donner envie de voyager en train, à l’échelle locale, nationale et transfrontalière — [avec une expérience claire, fiable et agréable].
 
-**Objectifs**
-- Voyageurs: visualiser les options de voyage en train, comparer les impacts (CO₂, accidents évités), découvrir l’offre touristique proche des gares.
-- Territoires/pros du tourisme: valoriser des destinations accessibles en train; améliorer l’accueil (infos POI, mobilités locales).
+### Vision
+- Rendre visibles, atteignables et désirables les destinations accessibles en train, avec des repères concrets (temps, événements, mobilités locales) et des bénéfices parlants (CO₂, coût, confort).
 
-**Livrables possibles (exemples)**
-- Cartographie des parcours cyclables et mobilités locales accessibles depuis les gares.
-- Carte/tableau de bord des points d’intérêt proches des gares (hôtels, attractions, etc.).
-- Mini-app de découverte des destinations accessibles en train (isochrones 2h/3h/4h, fréquences, stats POI, estimation CO₂ vs voiture/avion).
-  - Note: rester réaliste (pas de calculateur d’itinéraire complet; pas de correspondances, estimations par distance, etc.).
 
-**Ressources et inspirations**
-- Où partir avec TGV Max / MaxPlanner (calculateurs simples)
-- ChronoTrain (cartes isochrones)
-- Gares & Connexions (services/commerces autour des gares)
+### Portée produit (Moscow)
+- Must
 
-**Données (non exhaustif)**
-- Données d’itinéraires/horaires, gares, trajets
-- Offre touristique à proximité des gares
-- Mobilités locales (vélo, TC, etc.)
+- Should
 
-**Valorisation**
-- Publier une réutilisation sur `data.gouv.fr` pour visibilité, retours et échanges avec producteurs de données.
+- Could
 
-**Licence**
+- Won’t (pour cette phase)
+
+
+### Indicateurs
+- Enquêtes utilisateurs (sur échantillons variés)
+- Temps moyen pour identifier un trajet faisable en train < 2 min
+
+### Données & inspirations
+- Gares/horaires/trajets, POI à proximité, mobilités locales (marche, vélo, TC)
+- ChronoTrains (référence d’isochrones), SNCF Connect (perturbations, CO₂), Gares & Connexions (services)
+- Références « live »: `carto.tchoo.net`, `geOps Mobility`, inspirations maritimes (`MarineTraffic`)
+- Études & contexte: IFOP attentes voyageurs, TAGV 2019, objectifs fret (SNCF Réseau)
+
+
+
+### Notes techniques
+- Approche « estimation » et visualisation: pas d’itinéraire complet, pas de correspondances complexes
+- Cartes isochrones + couches POI + disponibilités locales (si données ouvertes)
+- Nous mettons l'acent sur le respect juridique (licences, scrapping limité/évité; privilégier données ouvertes)
+
+### Valorisation
+- Publication d’une réalisation sur `data.gouv.fr` : visibilité, retours et échanges avec les producteurs de données.
+
+### Licence
 - Sauf mention contraire, contenus sous licence Etalab-2.0. Voir `LICENSE`.
-
-
