@@ -1,0 +1,243 @@
+// AppLayout.js
+import { defineProperties } from "figma:react";
+import { useState, useEffect } from "react";
+import FloatingHeader from "./FloatingHeader";
+import MapView from "./MapView";
+import TravelContainer from "./TravelContainer";
+import { DestinationDetailView } from "./DestinationDetailView"; // On importe la nouvelle vue de détail
+import { FilterPanel } from './FilterPanel';
+
+// ## Données
+// =================================================================
+
+interface Destination {
+  id: number;
+  city: string;
+  price: number;
+  img: string;
+  lng: number;
+  lat: number;
+}
+
+const destinations: Destination[] = [
+  {
+    id: 1,
+    city: "Lille",
+    price: 65,
+    img: "https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg?auto=compress&cs=tinysrgb&w=400",
+    lng: 3.057,
+    lat: 50.629,
+  },
+  {
+    id: 2,
+    city: "Nantes",
+    price: 70,
+    img: "https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg?auto=compress&cs=tinysrgb&w=400",
+    lng: -1.553,
+    lat: 47.218,
+  },
+  {
+    id: 3,
+    city: "Strasbourg",
+    price: 85,
+    img: "https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg?auto=compress&cs=tinysrgb&w=400",
+    lng: 7.747,
+    lat: 48.583,
+  },
+  {
+    id: 4,
+    city: "Bordeaux",
+    price: 95,
+    img: "https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg?auto=compress&cs=tinysrgb&w=400",
+    lng: -0.579,
+    lat: 44.837,
+  },
+  {
+    id: 5,
+    city: "Lyon",
+    price: 110,
+    img: "https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg?auto=compress&cs=tinysrgb&w=400",
+    lng: 4.835,
+    lat: 45.764,
+  },
+  {
+    id: 6,
+    city: "Marseille",
+    price: 125,
+    img: "https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg?auto=compress&cs=tinysrgb&w=400",
+    lng: 5.369,
+    lat: 43.296,
+  },
+  {
+    id: 7,
+    city: "Nice",
+    price: 140,
+    img: "https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg?auto=compress&cs=tinysrgb&w=400",
+    lng: 7.261,
+    lat: 43.71,
+  },
+  {
+    id: 8,
+    city: "Toulouse",
+    price: 105,
+    img: "https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg?auto=compress&cs=tinysrgb&w=400",
+    lng: 1.444,
+    lat: 43.604,
+  },
+  {
+    id: 9,
+    city: "Montpellier",
+    price: 130,
+    img: "https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg?auto=compress&cs=tinysrgb&w=400",
+    lng: 3.876,
+    lat: 43.61,
+  },
+  {
+    id: 10,
+    city: "Rennes",
+    price: 75,
+    img: "https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg?auto=compress&cs=tinysrgb&w=400",
+    lng: -1.677,
+    lat: 48.117,
+  },
+];
+const ITEMS_PER_PAGE = 4;
+
+// ## Logique du Composant
+// =================================================================
+
+export default function AppLayout({
+  projectName,
+  mapZoom,
+  initialBudget,
+  showRoutes,
+}) {
+  const [startLocation, setStartLocation] = useState("Paris");
+  const [mapCenter, setMapCenter] = useState<[number, number]>([
+    2.3522, 48.8566,
+  ]);
+  const [currentBudget, setCurrentBudget] = useState(
+    initialBudget ?? 200,
+  );
+  const [currentPage, setCurrentPage] = useState(0);
+  const [selectedDestination, setSelectedDestination] =
+    useState<Destination | null>(null);
+
+  const handleMarkerClick = (destination: Destination) => {
+    setSelectedDestination(destination);
+  };
+
+  const handleCloseDetail = () => {
+    setSelectedDestination(null);
+  };
+
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [currentBudget]);
+
+  const filteredDestinations = destinations.filter(
+    (dest) => dest.price <= currentBudget,
+  );
+  const totalPages = Math.ceil(
+    filteredDestinations.length / ITEMS_PER_PAGE,
+  );
+  const paginatedDestinations = filteredDestinations.slice(
+    currentPage * ITEMS_PER_PAGE,
+    (currentPage + 1) * ITEMS_PER_PAGE,
+  );
+
+  // 1. On crée la liste "virtuelle" des destinations à afficher sur la carte
+  let destinationsOnMap = paginatedDestinations;
+
+  // 2. Si une destination est sélectionnée, on vérifie si elle est déjà visible
+  if (selectedDestination) {
+    const isSelectedVisible = paginatedDestinations.some(d => d.id === selectedDestination.id);
+    
+    // Si elle n'est pas visible, on l'ajoute temporairement à la liste pour la carte
+    if (!isSelectedVisible) {
+      destinationsOnMap = [...paginatedDestinations, selectedDestination];
+    }
+  }
+
+  // Panel Filtres
+  const [isFilterPanelOpen, setIsFilterPanelOpen] = useState(false);
+
+  const toggleFilterPanel = () => {
+    setIsFilterPanelOpen(prevState => !prevState);
+  };
+
+  return (
+    <div className="relative w-full h-full bg-gray-200 overflow-hidden">
+      {/* Fond avec la carte */}
+      <div className="absolute inset-0">
+        <MapView
+          center={mapCenter}
+          zoom={mapZoom}
+          markersData={destinationsOnMap}
+          onMarkerClick={handleMarkerClick}
+          showRoutes={showRoutes}
+        />
+      </div>
+
+      {/* Header flottant */}
+      <FloatingHeader projectName={projectName} />
+
+      {/* ## LA MISE EN PAGE MODIFIÉE ## */}
+      <div className="absolute top-1/2 -translate-y-6/10 left-4 z-10 flex items-start gap-4">
+        {/* Le panneau de recherche, qui peut être réduit */}
+        <TravelContainer
+          title="Où souhaitez-vous aller ?"
+          budget={currentBudget}
+          onBudgetChange={setCurrentBudget}
+          destinations={paginatedDestinations}
+          allFilteredDestinations={filteredDestinations}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+          startLocation={startLocation}
+          onLocationChange={setStartLocation}
+          isReduced={selectedDestination !== null} // Prop pour le mode réduit
+          onDestinationSelect={handleMarkerClick}
+          onFilterClick={toggleFilterPanel}
+        />
+
+        {/* La fiche de détail, qui n'apparaît que si une destination est sélectionnée */}
+        {selectedDestination && (
+          <DestinationDetailView
+            destination={selectedDestination}
+            onClose={handleCloseDetail}
+          />
+        )}
+
+        {isFilterPanelOpen && (
+          <FilterPanel />
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ## Propriétés Figma
+// =================================================================
+
+defineProperties(AppLayout, {
+  projectName: {
+    type: "string",
+    defaultValue: "Ma France en Train",
+  },
+  mapZoom: {
+    type: "number",
+    defaultValue: 8,
+  },
+  initialBudget: {
+    type: "number",
+    defaultValue: 200,
+    min: 10,
+    max: 500,
+    step: 10,
+  },
+  showRoutes: {
+    type: "boolean",
+    defaultValue: true,
+  },
+});

@@ -1,0 +1,37 @@
+// DestinationDetailView.js
+
+// Icône pour fermer la vue
+const CloseIcon = () => (
+  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+);
+
+export function DestinationDetailView({ destination, onClose }) {
+  // Sécurité pour ne rien afficher si aucune destination n'est fournie
+  if (!destination) return null;
+
+  return (
+    // Le conteneur principal de la fiche
+    <div className="w-[450px] h-[720px] bg-white rounded-xl shadow-lg font-sans flex flex-col p-4 relative">
+      {/* Bouton pour fermer */}
+      <button 
+        onClick={onClose} 
+        className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 z-10"
+      >
+        <CloseIcon />
+      </button>
+
+      {/* Contenu de la fiche */}
+      <div className="flex-grow flex flex-col">
+        <img src={destination.img} alt={`Image de ${destination.city}`} className="w-full h-56 object-cover rounded-lg mb-4" />
+        <h2 className="text-4xl font-bold text-gray-800">{destination.city}</h2>
+        <p className="text-xl text-gray-600 mb-6">à partir de {destination.price}€</p>
+        <p className="text-gray-700 text-sm mb-auto">
+          Explorez la magnifique ville de {destination.city}. Profitez de son architecture unique, de sa gastronomie locale et de ses paysages inoubliables.
+        </p>
+        <button className="w-full mt-4 py-3 text-lg font-bold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors">
+          Réserver ce trajet
+        </button>
+      </div>
+    </div>
+  );
+}
