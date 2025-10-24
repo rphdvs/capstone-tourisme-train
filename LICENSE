@@ -1,21 +1,39 @@
-MIT License
+LICENCE OUVERTE / OPEN LICENCE 2.0
 
-Copyright (c) 2025 rphdvs
+Le « Producteur » concède au « Réutilisateur » un droit non exclusif, gratuit, mondial et perpétuel d’utiliser les « Informations » objet de la présente licence conformément aux conditions ci‑après.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. Définitions
+- « Informations » : données ou informations, y compris leurs métadonnées, publiées par le Producteur sous la présente licence.
+- « Réutilisation » : utilisation des Informations à d’autres fins que celles pour lesquelles elles ont été produites ou reçues.
+- « Réutilisateur » : toute personne qui réutilise les Informations conformément à cette licence.
+- « Producteur » : toute personne qui produit ou détient les Informations.
+- « Informations dérivées » : informations créées à partir des Informations et/ou modifiées.
+- « Données associées » : informations permettant d’attribuer et d’informer sur les conditions d’utilisation.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+2. Champ d’application
+Cette licence a pour objet d’accorder des droits de réutilisation des Informations. Les licences spéciales ou droits de tiers signalés par le Producteur prévalent sur la présente licence pour les éléments concernés.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+3. Liberté de réutilisation
+Le Réutilisateur peut copier, publier, diffuser, transmettre, adapter, exploiter, extraire et réutiliser les Informations, à titre commercial ou non, en les combinant ou non avec d’autres informations, dans la mesure permise par la loi.
+
+4. Conditions
+La réutilisation est subordonnée à l’obligation de :
+- mentionner la paternité des Informations en indiquant au minimum le nom du Producteur, un lien vers la source (si disponible) et la date de la dernière mise à jour ;
+- ne pas altérer le sens des Informations, et ne pas induire en erreur des tiers ;
+- indiquer les modifications substantielles apportées (en cas d’Informations dérivées).
+
+Exemple de mention attendue : « Source: [Nom du producteur], sous licence Etalab Ouverte 2.0 (https://www.etalab.gouv.fr/licence-ouverte-open-licence) ».
+
+5. Droits de propriété intellectuelle
+Cette licence n’emporte aucune cession de droits de propriété intellectuelle du Producteur. Les bases de données peuvent être protégées au titre du droit des producteurs de bases de données ; la présente licence emporte renonciation du Producteur à l’exercice exclusif de ces droits pour les usages permis par la licence.
+
+6. Responsabilité
+Les Informations sont mises à disposition « en l’état », sans aucune garantie expresse ou implicite, notamment quant à leur exhaustivité, exactitude ou actualité. Le Producteur ne pourra être tenu responsable des dommages directs ou indirects résultant de la réutilisation des Informations.
+
+7. Droit applicable
+La présente licence est régie par le droit français.
+
+8. Compatibilité
+La Licence Ouverte 2.0 est compatible avec d’autres licences libres ouvertes, notamment l’ODC-BY 1.0, CC-BY 4.0, sous réserve du respect des obligations de paternité.
+
+Texte et informations complémentaires : https://www.etalab.gouv.fr/licence-ouverte-open-licence
